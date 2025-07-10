@@ -6,7 +6,7 @@
   if (isset($_POST['reset'])) {
     $files_to_delete = [
       "hasil.csv",
-      "cluster.json",
+      "elbow_plot.png",
       "cluster_summary.csv"
     ];
 
@@ -20,7 +20,7 @@
 
     echo "<div class='alert alert-success'>File berikut berhasil dihapus: <strong>" . implode(', ', $deleted) . "</strong></div>";
   } else {
-    echo "<div class='alert alert-warning'>Klik tombol di bawah ini untuk mereset sistem. Ini akan menghapus file hasil clustering seperti <code>hasil.csv</code>, <code>cluster.json</code>, dan <code>cluster_summary.png</code>.</div>";
+    echo "<div class='alert alert-warning'>Klik tombol di bawah ini untuk mereset sistem. Ini akan menghapus file hasil clustering seperti <code>hasil.csv</code>, <code>elbow_plot.png</code>, dan <code>cluster_summary.png</code>.</div>";
   }
   ?>
 

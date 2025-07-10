@@ -17,23 +17,29 @@
         </thead>
         <tbody>
           <?php
-          $summary = array();
-          if (($handle = fopen("cluster_summary.csv", "r")) !== FALSE) {
-              $first = true;
-              while (($data = fgetcsv($handle)) !== FALSE) {
-                  if ($first) { $first = false; continue; }
-                  $cluster = $data[0];
-                  $jumlah = $data[1];
-                  $summary[] = $jumlah;
-                  echo "<tr>
-                          <td>$cluster</td>
-                          <td>$jumlah</td>
-                          <td><a href='cluster_detail.php?cluster=$cluster' class='btn btn-primary'>Tampilkan</a></td>
-                        </tr>";
-              }
-              fclose($handle);
-          }
-          ?>
+$summary = array();
+
+if (!file_exists("cluster_summary.csv")) {
+    echo "<tr><td colspan='3'>Data belum diproses</td></tr>";
+} else {
+    if (($handle = fopen("cluster_summary.csv", "r")) !== FALSE) {
+        $first = true;
+        while (($data = fgetcsv($handle)) !== FALSE) {
+            if ($first) { $first = false; continue; }
+            $cluster = $data[0];
+            $jumlah = $data[1];
+            $summary[] = $jumlah;
+            echo "<tr>
+                    <td>$cluster</td>
+                    <td>$jumlah</td>
+                    <td><a href='cluster_detail.php?cluster=$cluster' class='btn btn-primary'>Tampilkan</a></td>
+                  </tr>";
+        }
+        fclose($handle);
+    }
+}
+?>
+
         </tbody>
       </table>
     </div>
